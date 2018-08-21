@@ -1,0 +1,30 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library('cluster')
+library('factoextra')
+library('tidyverse')
+```
+
+```{r}
+df <- read_csv('enh_impute.csv')
+head(df)
+```
+
+```{r}
+df$X1 <- NULL
+head(df)
+```
+```{r}
+df$aire_acond <- as.factor(df$aire_aconsssssssssssssssssssssssssd)
+levels(df$aire_acond)
+```
+
+
+```{r}
+gower <- daisy(x = df, metric = 'gower')
+```
+
