@@ -15,11 +15,22 @@ head(df)
 ```
 
 ```{r}
+str(df)
+```
+
+
+
+```{r}
 df$X1 <- NULL
 head(df)
 ```
 ```{r}
-df$aire_acond <- as.factor(df$aire_aconsssssssssssssssssssssssssd)
+df$aire_acond <- as.factor(df$aire_acond)
+levels(df$aire_acond)
+```
+
+```{r}
+df$bomba_aguas <- as.factor(df$aire_acond)
 levels(df$aire_acond)
 ```
 
