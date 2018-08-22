@@ -39,13 +39,12 @@ colnames(df)[57] <- "anho"
 
 
 ```{r}
-df$X1 <- as.numeric(df$X1)
 df$aire_acond <- as.factor(df$aire_acond) # symm 2
 df$antiguedad <- as.numeric(df$antiguedad) # numeric 3
 df$bano_comp <- as.factor(df$bano_comp) # symm 4
 df$bano_excus <- as.factor(df$bano_excus) 
 df$bano_regad <- as.factor(df$bano_regad) 
-df$bomba_agua <- as.factor(df$bomba_agua) 
+df$bomba_agua <- as.factor(df$bomba_agua) # symm 7
 #
 df$calefacc <- as.factor(df$calefacc) # symm 8
 df$calentador <- as.factor(df$calentador) # symm 9
@@ -116,7 +115,7 @@ summary(df)
 
 ```{r}
 gower_dist <- daisy(df, metric = "gower", stand = FALSE, list(
-  symm=c(2,4,8,9,10,11,12,14,15,16,17,25,28,29,30,31,36,37,38,39,40,41,42,45,47,50,54,55,56),
+  symm=c(2,7,8,9,10,11,12,14,15,16,17,25,28,29,30,32,36,37,38,39,40,41,42,45,47,50,54,55,56),
   numeric=c(3,26,27,35,49,51,52,53)))
 ```
 
