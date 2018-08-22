@@ -35,6 +35,11 @@ df$uso_compar <- as.factor(df$uso_compar)
 df$celular <- as.factor(df$celular)
 df$tel_fijo <- as.factor(df$tel_fijo)
 df$tv_paga <- as.factor(df$tv_paga)
+df$combustible <- as.factor(df$combustible) 
+df$dotac_agua <- as.factor(df$dotac_agua)
+df$mat_pisos <- as.factor(df$mat_pisos)
+df$sanit_agua <- as.factor(df$sanit_agua)
+df$tipo_viv <- as.factor(df$tipo_viv)
 ```
 
 ```{r}
