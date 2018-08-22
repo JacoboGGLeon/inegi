@@ -7,6 +7,8 @@ output: html_notebook
 library('cluster')
 library('factoextra')
 library('tidyverse')
+library(gower)
+library("dbscan")
 ```
 
 ```{r}
@@ -112,12 +114,24 @@ summary(df)
 
 
 ```{r}
-gower_dist <- daisy(df, metric = "gower", stand = TRUE, type = list(
-  numeric=c(3,26,27,35,49,51,52,53)))
+#gower_dist <- daisy(df, metric = "gower", stand = TRUE, type = list(numeric=c(3,26,27,35,49,51,52,53)))
 ```
 
 ```{r}
-gower_mat <- as.matrix(gower_dist)
+reviris <- df[rev(seq_len(nrow(df))),,drop=FALSE]
+reviris
 ```
+
+
+```{r}
+gower_mat <- as.matrix(gower_dist(df, reviris))
+
+```
+
+```{r}
+db <- dbscan(gower_mat, eps = .4, minPts = 4)
+db
+```
+
 
 
