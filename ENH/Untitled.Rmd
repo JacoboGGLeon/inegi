@@ -15,27 +15,30 @@ head(df)
 ```
 
 ```{r}
+df$X1 <- NULL
+head(df)
+```
+
+```{r}
+for(i in colnames(df)){
+  if ( typeof(df[[i]]) == 'integer'){
+    df[[i]] <- as.factor(df[[i]])
+  }
+}
+```
+
+```{r}
 str(df)
 ```
 
 
 
 ```{r}
-df$X1 <- NULL
-head(df)
-```
-```{r}
-df$aire_acond <- as.factor(df$aire_acond)
-levels(df$aire_acond)
+gower_dist <- daisy(df, metric = "gower")
 ```
 
 ```{r}
-df$bomba_aguas <- as.factor(df$aire_acond)
-levels(df$aire_acond)
+gower_mat <- as.matrix(gower_dist)
 ```
 
-
-```{r}
-gower <- daisy(x = df, metric = 'gower')
-```
 
