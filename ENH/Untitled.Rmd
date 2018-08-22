@@ -28,7 +28,17 @@ for(i in colnames(df)){
 ```
 
 ```{r}
-str(df)
+#13 28 49 54 55 56
+df$computador <- as.factor(df$computador)
+df$internet <- as.factor(df$internet)
+df$uso_compar <- as.factor(df$uso_compar)
+df$celular <- as.factor(df$celular)
+df$tel_fijo <- as.factor(df$tel_fijo)
+df$tv_paga <- as.factor(df$tv_paga)
+```
+
+```{r}
+summary(df)
 ```
 
 
