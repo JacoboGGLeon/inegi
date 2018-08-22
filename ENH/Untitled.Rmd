@@ -45,31 +45,30 @@ df$bano_comp <- as.factor(df$bano_comp)
 df$bano_excus <- as.factor(df$bano_excus) 
 df$bano_regad <- as.factor(df$bano_regad) 
 df$bomba_agua <- as.factor(df$bomba_agua) # symm 7
-#
 df$calefacc <- as.factor(df$calefacc) # symm 8
+#
 df$calentador <- as.factor(df$calentador) # symm 9
 df$chimenea <- as.factor(df$chimenea) # symm 10
 df$cisterna <- as.factor(df$cisterna) # symm 11
 df$cocina <- as.factor(df$cocina) # symm 12
 df$combustible <- as.factor(df$combustible)
 df$computador <- as.factor(df$computador) # symm 14
-#
 df$const_bano <- as.factor(df$const_bano) # symm 15
 df$const_coci <- as.factor(df$const_coci) # symm 16
 df$const_dorm <- as.factor(df$const_dorm) # symm 17
 df$cuart_dorm <- as.factor(df$cuart_dorm) 
+#
 df$disp_agua <- as.factor(df$disp_agua) 
 df$disp_elect <- as.factor(df$disp_elect)
 df$dotac_agua <- as.factor(df$dotac_agua)
-#
 df$drenaje <- as.factor(df$drenaje) 
 df$eli_basura <- as.factor(df$eli_basura) 
 df$est_socio <- as.factor(df$est_socio) 
 df$excusado <- as.factor(df$excusado) # symm 25
 df$focos_ahor <- as.numeric(df$focos_ahor) # numeric 26
 df$focos_inca <- as.numeric(df$focos_inca) # numeric 27
-df$fregadero <- as.factor(df$fregadero) # symm 28
 #
+df$fregadero <- as.factor(df$fregadero) # symm 28
 df$internet <- as.factor(df$internet) # symm 29
 df$lavadero <- as.factor(df$lavadero) # symm 30
 df$mat_pared <- as.factor(df$mat_pared) 
@@ -85,23 +84,22 @@ df$repar_cabl <- as.factor(df$repar_cabl) # symm 39
 df$repar_dren <- as.factor(df$repar_dren) # symm 40
 df$repar_pard <- as.factor(df$repar_pard) # symm 41
 df$repar_tech <- as.factor(df$repar_tech) # symm 42
-#
 df$sanit_agua <- as.factor(df$sanit_agua)
 df$tam_loc <- as.factor(df$tam_loc) 
 df$tanque_gas <- as.factor(df$tanque_gas) # symm 45
+#
 df$tenencia <- as.factor(df$tenencia) 
 df$tinaco_azo <- as.factor(df$tinaco_azo) # symm 47
 df$tipo_viv <- as.factor(df$tipo_viv)
 df$tot_hog <- as.numeric(df$tot_hog) # numeric 49
-#
 df$uso_compar <- as.factor(df$uso_compar) # symm 50
 df$tot_hom <- as.numeric(df$tot_hom) # numeric 51
 df$tot_integ <- as.numeric(df$tot_integ) # numeric 52
 df$tot_muj <- as.numeric(df$tot_muj) # numeric 53
+#
 df$celular <- as.factor(df$celular) # symm 54
 df$tel_fijo <- as.factor(df$tel_fijo) # symm 55
 df$tv_paga <- as.factor(df$tv_paga) # symm 56
-#
 df$anho <- as.factor(df$anho) 
 df$CVE_ENT <- as.factor(df$CVE_ENT) 
 df$CVE_MUN <- as.factor(df$CVE_MUN) 
@@ -114,8 +112,7 @@ summary(df)
 
 
 ```{r}
-gower_dist <- daisy(df, metric = "gower", stand = FALSE, list(
-  symm=c(2,7,8,9,10,11,12,14,15,16,17,25,28,29,30,34,36,37,38,39,40,41,42,45,47,50,54,55,56),
+gower_dist <- daisy(df, metric = "gower", stand = TRUE, type = list(
   numeric=c(3,26,27,35,49,51,52,53)))
 ```
 
