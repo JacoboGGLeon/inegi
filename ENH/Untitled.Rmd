@@ -40,6 +40,9 @@ df$dotac_agua <- as.factor(df$dotac_agua)
 df$mat_pisos <- as.factor(df$mat_pisos)
 df$sanit_agua <- as.factor(df$sanit_agua)
 df$tipo_viv <- as.factor(df$tipo_viv)
+df$bano_comp <- as.factor(df$bano_comp)
+df$bano_comp <- as.factor(df$bano_comp)
+df$bano_excus <- as.factor(df$bano_excus)
 ```
 
 ```{r}
