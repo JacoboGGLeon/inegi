@@ -10,7 +10,7 @@ library('tidyverse')
 ```
 
 ```{r}
-df <- read_csv('enh_impute.csv')
+df <- read_csv('enh_impute_check.csv')
 head(df)
 ```
 
@@ -20,26 +20,87 @@ head(df)
 ```
 
 ```{r}
-for(i in colnames(df)){
-  if ( typeof(df[[i]]) == 'integer'){
-    df[[i]] <- as.factor(df[[i]])
-  }
-}
+
+#for(i in colnames(df)){
+#  if ( typeof(df[[i]]) == 'integer'){
+#    df[[i]] <- as.factor(df[[i]])
+#  }
+#}
+
 ```
 
 ```{r}
-#13 28 49 54 55 56
-df$computador <- as.factor(df$computador)
-df$internet <- as.factor(df$internet)
-df$uso_compar <- as.factor(df$uso_compar)
-df$celular <- as.factor(df$celular)
-df$tel_fijo <- as.factor(df$tel_fijo)
-df$tv_paga <- as.factor(df$tv_paga)
-df$combustible <- as.factor(df$combustible) 
+summary(df)
+```
+
+```{r}
+df$aire_acond <- as.factor(df$aire_acond) # symm 1
+df$antiguedad <- as.numeric(df$antiguedad) # numeric 2
+df$bano_comp <- as.factor(df$bano_comp) # symm 3
+df$bano_excus <- as.factor(df$bano_excus) 
+df$bano_regad <- as.factor(df$bano_regad) 
+df$bomba_agua <- as.factor(df$bomba_agua) 
+df$calefacc <- as.factor(df$calefacc) # symm 7
+#
+df$calentador <- as.factor(df$calentador) # symm 8
+df$chimenea <- as.factor(df$chimenea) # symm 9
+df$cisterna <- as.factor(df$cisterna) # symm 10
+df$cocina <- as.factor(df$cocina) # symm 11
+df$combustible <- as.factor(df$combustible)
+df$computador <- as.factor(df$computador) # symm 13
+df$const_bano <- as.factor(df$const_bano) # symm 14
+#
+df$const_coci <- as.factor(df$const_coci) # symm 15
+df$const_dorm <- as.factor(df$const_dorm) # symm 16
+df$cuart_dorm <- as.factor(df$cuart_dorm) 
+df$disp_agua <- as.factor(df$disp_agua) 
+df$disp_elect <- as.factor(df$disp_elect)
 df$dotac_agua <- as.factor(df$dotac_agua)
-df$mat_pisos <- as.factor(df$mat_pisos)
+df$drenaje <- as.factor(df$drenaje) 
+#
+df$eli_basura <- as.factor(df$eli_basura) 
+df$est_socio <- as.factor(df$est_socio) 
+df$excusado <- as.factor(df$excusado) # symm 24
+df$focos_ahor <- as.numeric(df$focos_ahor) # numeric 25
+df$focos_inca <- as.numeric(df$focos_inca) # numeric 26
+df$fregadero <- as.factor(df$fregadero) # symm 27
+df$internet <- as.factor(df$internet) # symm 28
+#
+df$lavadero <- as.factor(df$lavadero) # symm 29
+df$mat_pared <- as.factor(df$mat_pared) 
+df$mat_pisos <- as.factor(df$mat_pisos) 
+df$mat_techos <- as.factor(df$mat_techos) 
+df$medidor_luz <- as.factor(df$medidor_luz) # symm 33
+df$num_cuarto <- as.numeric(df$num_cuarto) # numeric 34
+df$pileta <- as.factor(df$pileta) # symm 35
+#
+df$regadera <- as.factor(df$regadera) # symm 36
+df$repar_agua <- as.factor(df$repar_agua) # symm 37
+df$repar_cabl <- as.factor(df$repar_cabl) # symm 38
+df$repar_dren <- as.factor(df$repar_dren) # symm 39
+df$repar_pard <- as.factor(df$repar_pard) # symm 40
+df$repar_tech <- as.factor(df$repar_tech) # symm 41
 df$sanit_agua <- as.factor(df$sanit_agua)
+#
+df$tam_loc <- as.factor(df$tam_loc) 
+df$tanque_gas <- as.factor(df$tanque_gas) # symm 44
+df$tenencia <- as.factor(df$tenencia) 
+df$tinaco_azo <- as.factor(df$tinaco_azo) # symm 46
 df$tipo_viv <- as.factor(df$tipo_viv)
+df$tot_hog <- as.numeric(df$tot_hog) # numeric 48
+df$uso_compar <- as.factor(df$uso_compar) # symm 49
+#
+df$tot_hom <- as.numeric(df$tot_hom) # numeric 50
+df$tot_integ <- as.numeric(df$tot_integ) # numeric 51
+df$tot_muj <- as.numeric(df$tot_muj) # numeric 52
+df$celular <- as.factor(df$celular) # symm 53
+df$tel_fijo <- as.factor(df$tel_fijo) # symm 54
+df$tv_paga <- as.factor(df$tv_paga) # symm 55
+df$año <- as.factor(df$año) 
+#
+df$CVE_ENT <- as.factor(df$CVE_ENT) 
+df$CVE_MUN <- as.factor(df$CVE_MUN) 
+df$CVE_LOC <- as.factor(df$CVE_LOC) 
 ```
 
 ```{r}
@@ -47,9 +108,10 @@ summary(df)
 ```
 
 
-
 ```{r}
-gower_dist <- daisy(df, metric = "gower")
+gower_dist <- daisy(df, metric = "gower", stand = FALSE, list(
+  symm=c(1,3,7,8,9,10,11,13,14,15,16,24,27,28,29,33,35,36,37,38,39,40,41,44,46,49,53,54,55),
+  numeric=c(2,25,26,3448,50,51,52)))
 ```
 
 ```{r}
