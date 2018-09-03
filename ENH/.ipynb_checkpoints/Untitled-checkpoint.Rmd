@@ -6,13 +6,29 @@ output: html_notebook
 ```{r}
 library('cluster')
 library('factoextra')
-library('plyr')
-Sys.setenv('R_MAX_VSIZE'=32000000000)
+library('tidyverse')
+library(gower)
+library("dbscan")
 ```
 
 ```{r}
 df <- read.csv('enh_impute_check.csv')
 head(df)
+```
+
+```{r}
+#df$X1 <- NULL
+#head(df)
+```
+
+```{r}
+
+#for(i in colnames(df)){
+#  if ( typeof(df[[i]]) == 'integer'){
+#    df[[i]] <- as.factor(df[[i]])
+#  }
+#}
+
 ```
 
 ```{r}
@@ -96,40 +112,26 @@ df$CVE_LOC <- as.factor(df$CVE_LOC)
 summary(df)
 ```
 
-```{r}
-df_grid <-  plyr::count(df[,-1])
-df_grid
-```
-
-
-```{r}
-#df$X1 <- NULL
-#head(df)
-```
-
-```{r}
-
-#for(i in colnames(df)){
-#  if ( typeof(df[[i]]) == 'integer'){
-#    df[[i]] <- as.factor(df[[i]])
-#  }
-#}
-
-```
-
 
 ```{r}
 #gower_dist <- daisy(df, metric = "gower", stand = TRUE, type = list(numeric=c(3,26,27,35,49,51,52,53)))
 ```
 
 ```{r}
-#reviris <- df[rev(seq_len(nrow(df))),,drop=FALSE]
-#reviris
+reviris <- df[rev(seq_len(nrow(df))),,drop=FALSE]
+reviris
 ```
 
 
 ```{r}
-#gower_mat <- as.matrix(gower_dist(df, reviris))
+gower_mat <- as.matrix(gower_dist(df, reviris))
+
 ```
+
+```{r}
+db <- dbscan(gower_mat, eps = .4, minPts = 4)
+db
+```
+
 
 
