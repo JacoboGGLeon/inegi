@@ -7,7 +7,8 @@ output: html_notebook
 library('cluster')
 library('factoextra')
 library('plyr')
-Sys.setenv('R_MAX_VSIZE'=32000000000)
+#Sys.setenv('R_MAX_VSIZE'=32000000000)
+library('CluMix')
 ```
 
 ```{r}
