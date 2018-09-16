@@ -1,9 +1,12 @@
 install.packages("Boruta", dependencies = TRUE)
 install.packages("ranger", dependencies = TRUE)
+
 library(ranger)
 library(Boruta)
 
-traindata <- read.csv("../jacoboleon/Desktop/Loan_Prediction/train_u6lujuX_CVtuZ9i.csv", header = T, stringsAsFactors = F)
+#Sys.setenv('R_MAX_VSIZE'=32000000000)
+
+traindata <- read.csv("../jacoboleon/Desktop/houses_sales_kaggle/train_impute.csv", header = T, stringsAsFactors = F)
 
 #Let’s have a look at the data.
 str(traindata)
@@ -23,7 +26,7 @@ convert <- c(2:6, 11:13)
 traindata[,convert] <- data.frame(apply(traindata[convert], 2, as.factor))
 
 set.seed(123)
-boruta_train <- Boruta(LoanStatus~.-LoanID, data = traindata, doTrace = 2)
+boruta_train <- Boruta(x = traindata~.-LoanID, data = traindata, doTrace = 2)
 print(boruta_train)
 
 plot(boruta_train, xlab = "", xaxt = "n")

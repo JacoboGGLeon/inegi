@@ -10,23 +10,21 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("Biobase")
 
 library(CluMix)
+library(ClustOfVar)
 data(mixdata)
 str(mixdata)
 
-w <- rep(1:2, each=5)
-mix.heatmap(mixdata, varweights=w, rowmar=7)
-mix.heatmap(mixdata, dist.variables.method="distcor", rowmar=7)
-mix.heatmap(mixdata, dist.variables.method="ClustOfVar", rowmar=7)
 
-D.subjects <- dist.subjects(mixdata)
-dend.variables <- dendro.variables(mixdata, method="distcor")
+sim_var <- CluMix::similarity.variables(data = mixdata)
 
-require(dendextend)
-dend.variables <- dend.variables %>% 
-    set("branches_k_color", k=2, value=2:3) %>%
-    + set("branches_lwd", 2)
-mix.heatmap(mixdata, D.subjects=D.subjects, dend.variables=dend.variables, rowmar=7)
+sim_sub <- CluMix::similarity.subjects(data = mixdata)
 
-colbar <- sample(c("purple", "darkgrey"), nrow(mixdata), replace=T)
-mix.heatmap(mixdata, dist.variables.method="ClustOfVar", ColSideColors=colbar,
-            + legend.colbar=c("aa", "bb"), rowmar=7)
+dis_sub <- CluMix::dist.subjects(data = mixdata)
+
+dis_var <- CluMix::dist.variables(data = mixdata)
+
+distmap(mixdata, what="variables", margins=c(6,6))
+S <- similarity.variables(mixdata)
+distmap(S)
+
+confounderPlot(mixdata, x="X4.ord", y="X1.cat")
